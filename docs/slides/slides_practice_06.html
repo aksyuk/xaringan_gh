@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>slides_practice_06.utf8.md</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css\guu-slides-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+class: inverse, center, middle  
+background-image: url(./images/title_GERB-GUU_16-9.png)
+background-size: cover
+
+## Практикум на ЭВМ 4
+
+### Светлана Андреевна Суязова (Аксюк) &lt;/br&gt; [s.aksuk@kiber-guu.ru](mailto:s.aksuk@kiber-guu.ru)  
+
+27 ноября 2019
+
+---
+
+## Проверка остатков регрессионной модели       
+
+- График остатков    
+- Проверка условий Гаусса-Маркова    
+- Поиск влияющих и аномальных наблюдений     
+
+---
+
+##### Пример на данных по потреблению алкоголя
+
+.small[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Модель &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Формула &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; R.2.скорр &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; F.расч &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Станд.Ошибка &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; fit.X1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .small[ `\(Y = 16.31-0.18 \cdot Rural.2011-0.18 \cdot Rural.2011\\\)` ] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.277 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 30.07 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; fit.X1.fo &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .small[ `\(Y = 13.67-0.09 \cdot Rural.2011-6.01 \cdot FOСКФО\\-4.18 \cdot FOЮФО+0.15 \cdot Rural.2011.FOСЗФО\\\)` ] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.527 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22.16 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; fit.X2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .small[ `\(Y = 4+0.07 \cdot Injury.2011+0.07 \cdot Injury.2011\\\)` ] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.129 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.22 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; fit.X2.fo &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .small[ `\(Y = 32.66-0.19 \cdot Injury.2011-29.33 \cdot FOПФО\\-18.05 \cdot FOСЗФО-35.37 \cdot FOСКФО\\-22.17 \cdot FOСФО-47.32 \cdot FOУФО\\-26.84 \cdot FOЦФО-32.13 \cdot FOЮФО\\+0.27 \cdot Injury.2011.FOПФО+0.2 \cdot Injury.2011.FOСЗФО\\+0.29 \cdot Injury.2011.FOСКФО+0.2 \cdot Injury.2011.FOСФО\\+0.42 \cdot Injury.2011.FOУФО+0.25 \cdot Injury.2011.FOЦФО\\+0.27 \cdot Injury.2011.FOЮФО-0.19 \cdot Injury.2011\\\)` ] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.623 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.38 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.5 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+
+### График разброса остатков   
+
+.pull-left[
+.small[
+
+```r
+# сохранённые модели
+load('Пример_алкоголь_модели.RData')
+
+# лучшая модель
+fit.X2.fo &lt;- models.list[['fit.X2.fo']]
+
+# первый график диагностики
+plot(fit.X2.fo, 1)
+```
+]]
+
+.pull-right[
+.center[
+
+&lt;img src = "./slides_practice_06_files/plot-01.png"&gt;&lt;/img&gt;
+]]
+
+---
+
+### График нормальных квантилей (Q-Q)   
+
+.pull-left[
+.small[
+
+```r
+# второй график диагностики
+plot(fit.X2.fo, 2)
+```
+]]
+
+.pull-right[
+.center[
+
+&lt;img src = "./slides_practice_06_files/plot-02.png"&gt;&lt;/img&gt;
+]]
+
+---
+
+### Разброс шкалированных остатков    
+
+.pull-left[
+.small[
+
+```r
+# третий график диагностики
+plot(fit.X2.fo, 3)
+```
+]]
+
+.pull-right[
+.center[
+
+&lt;img src = "./slides_practice_06_files/plot-03.png"&gt;&lt;/img&gt;
+]]
+
+---
+
+### График расстояний Кука    
+
+.pull-left[
+.small[
+
+```r
+# четвёртый график диагностики
+plot(fit.X2.fo, 4)
+```
+]]
+
+.pull-right[
+.center[
+
+&lt;img src = "./slides_practice_06_files/plot-04.png"&gt;&lt;/img&gt;
+]]
+
+
+---
+
+### Разброс остатков против оценок влияния     
+
+.pull-left[
+.small[
+
+```r
+# пятый график диагностики
+plot(fit.X2.fo, 5)
+```
+]]
+
+.pull-right[
+.center[
+
+&lt;img src = "./slides_practice_06_files/plot-05.png"&gt;&lt;/img&gt;
+]]
+
+---
+
+#### Влияющие наблюдения   
+
+
+```r
+h &lt;- augment(fit.X2.fo, reg.df)
+rownames(h) &lt;- rownames(reg.df)
+colnames(h)
+```
+
+```
+##  [1] ".rownames"            "FO"                   "Retail.Vodka.2011.ps"
+##  [4] "Unemp.2011"           "Rural.2011"           "Below.Min.2011"      
+##  [7] "Wage.ps.2011"         "Injury.2011"          "Murders.2011"        
+## [10] ".fitted"              ".se.fit"              ".resid"              
+## [13] ".hat"                 ".sigma"               ".cooksd"             
+## [16] ".std.resid"
+```
+
+```r
+# регионы с номерами 8, 72
+lev &lt;- h[rownames(reg.df) %in% c(8, 72), 
+         '.cooksd', drop = F]
+```
+
+---
+
+#### Влияющие наблюдения   
+
+
+```r
+# критическая граница F-распределения
+n &lt;- nrow(reg.df)
+k &lt;- nrow(summary(fit.X2.fo)$coeff)
+f.tabl &lt;- qf(1 - 0.05, df1 = k, df2 = n - k)
+
+# сравниваем расчётные значения 
+#  с критической границей
+cbind(leverage = round(lev, 2), f.tabl = round(f.tabl, 2), 
+  p.val = round(pf(lev$.cooksd, df1 = k, df2 = n - k), 4))
+```
+
+```
+##   .cooksd f.tabl  p.val
+## 1    0.91   1.81 0.4393
+## 2    0.51   1.81 0.0658
+```
+
+---
+
+#### Проверка равенства среднего остатков нулю   
+
+
+```r
+# t-тест для среднего
+t.test(fit.X2.fo$residuals, mu=0, alternative='two.sided')
+```
+
+```
+## 
+## 	One Sample t-test
+## 
+## data:  fit.X2.fo$residuals
+## t = -1.4606e-16, df = 76, p-value = 1
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  -0.506592  0.506592
+## sample estimates:
+##     mean of x 
+## -3.715012e-17
+```
+
+---
+
+#### Тесты на гетероскедастичность   
+
+
+```r
+# тест Бройша-Пагана 
+bptest(fit.X2.fo)
+```
+
+```
+## 
+## 	studentized Breusch-Pagan test
+## 
+## data:  fit.X2.fo
+## BP = 19.518, df = 15, p-value = 0.1912
+```
+
+---
+
+#### Тесты на автокорреляцию    
+
+
+```r
+# тест Дарбина-Уотсона на автокорреляцию
+dwtest(fit.X2.fo, alternative = 'two.sided')
+```
+
+```
+## 
+## 	Durbin-Watson test
+## 
+## data:  fit.X2.fo
+## DW = 2.0024, p-value = 0.4518
+## alternative hypothesis: true autocorrelation is not 0
+```
+
+---
+
+### Практическая часть занятия  
+
+- Прочитать указания к первой лабораторной работе повторить код примеров. &lt;a href = "github.com/aksyuk/R-Practice-basics/tree/master/RScripts/manual_labs"&gt;github.com/aksyuk/R-Practice-basics/tree/master/RScripts/manual_labs&lt;/a&gt;   
+
+- Приступить к выполнению упр. 12 и лабораторной №3. 
+
+.center[
+&lt;img src="./slides_practice_04_files/hubot.jpg" width="23%"&gt;
+&lt;font size = "4px"&gt;image credit: octodex.github.com&lt;/font&gt;
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
