@@ -1,0 +1,27 @@
+---
+title: ''
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+### Слайды к занятиям по дисциплине "Практикум на ЭВМ 4"   
+
+* [Практика №1: Основы. 4.09.2019](https://aksyuk.github.io/xaringan_gh/slides/slides_practice_01.html)   
+
+* [Задачки 11.09.2019](https://aksyuk.github.io/xaringan_gh/slides/slides_quiz_01.html)    
+
+* [Практика №2: **Базова графическая система**. 25.09.2019](https://aksyuk.github.io/xaringan_gh/slides/slides_practice_02.html)   
+
+* [Практика №3: **Пользовательские функции**. 02.10.2019](https://aksyuk.github.io/xaringan_gh/slides/slides_practice_03.html)    
+
+* [Практика №4: **Предварительный анализ данных**. 23.10.2019](https://aksyuk.github.io/xaringan_gh/slides/slides_practice_04.html)    
+
+* [Практика №5: **Регрессионный анализ**. 20.11.2019](https://aksyuk.github.io/xaringan_gh/slides/slides_practice_05.html)
+
+* [Практика №6: **Тесты остатков**. 27.11.2019](https://aksyuk.github.io/xaringan_gh/slides/slides_practice_06.html)  
+
+ГУУ, ИИС, кафедра математических методов в экономике и управлении -- 2019 г.    
