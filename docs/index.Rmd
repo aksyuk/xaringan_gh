@@ -10,6 +10,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Слайды к занятиям по дисциплине "OLAP-инструменты R"   
 
-* [Практика №1: Основы. 12.02.2022](https://aksyuk.github.io/xaringan_gh/slides/slides_practice_01.html)   
+* [Практика №1: Основы. 12.02.2020](https://aksyuk.github.io/xaringan_gh/slides/slides_practice_01.html)   
 
 ГУУ, ИИС, кафедра математических методов в экономике и управлении -- 2020 г.    
