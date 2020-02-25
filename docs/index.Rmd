@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * [Практика №1: Основы. 12.02.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_01.html)   
 
+* [Практика №2: Графики.  26.02.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_02.html)   
 
 
 ### Дисциплина “Информационные технологии в экономике”    
