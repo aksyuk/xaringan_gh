@@ -21,9 +21,3 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * [Сбор данных для семестровой. 17.02.2020](https://aksyuk.github.io/xaringan_gh/slides/itve/slides_01.html)   
 
-### ГУУ, 3 марта 2020
-
-* [Слайды 4:3](https://aksyuk.github.io/xaringan_gh/slides/SCIENCE/SmartNations_03-03-2020_4-3.html)   
-* [Слайды 16:9](https://aksyuk.github.io/xaringan_gh/slides/SCIENCE/SmartNations_03-03-2020_16-9.html)   
-* [pdf 4:3](https://aksyuk.github.io/xaringan_gh/slides/SCIENCE/SmartNations_03-03-2020_4-3.pdf)   
-* [pdf 16:9](https://aksyuk.github.io/xaringan_gh/slides/SCIENCE/SmartNations_03-03-2020_16-9.pdf)   
