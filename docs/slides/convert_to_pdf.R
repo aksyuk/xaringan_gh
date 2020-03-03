@@ -11,6 +11,8 @@ library('xaringan')
 # pagedown::chrome_print("./slides/slides_practice_02.Rmd", 
 #                        browser = "C:\\Users\\sa_suyazova\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe")
 
+pagedown::chrome_print("./SmartNations_03-03-2020_4-3.html", 
+                       browser = "C:\\Users\\sa_suyazova\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe")
 pagedown::chrome_print("./SmartNations_03-03-2020_16-9.html", 
                        browser = "C:\\Users\\sa_suyazova\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe")
 

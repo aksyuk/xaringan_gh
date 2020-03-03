@@ -82,7 +82,7 @@ kable(top.10.size, format = 'html')
 ]]
 
 .tiny[
-*Источники статистики: 1)Еврокомиссия; 2)Detelj, K., Jagric, T., Markovic-Hribernik, T. (2016), «Exploration of the Effectiveness of Public Procurement for Innovation: Panel Analysis of EU Countries' Data»*
+*Источник статистики: Еврокомиссия*
 ]
 ---
 
