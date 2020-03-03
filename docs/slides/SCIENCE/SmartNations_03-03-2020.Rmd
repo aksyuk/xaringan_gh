@@ -11,7 +11,8 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 
-library('icon')
+library('knitr')
+
 ```
 
 class: inverse, center, middle  
@@ -54,22 +55,62 @@ background-size: cover
 
 ---
 
-**Корреляция между объёмом торгов и количеством лучших практик**   
+**Объём торгов (% ВВП) и количество применяемых лучших практик (всего 30)**   
+.pull-left[
+.small[
+```{r, echo = F, message = F, warning = F, results = 'as.is'}
+top.10.pract <- data.frame(Страна = c('*Польша*', '*Великобритания*',
+                                      'Франция', 'Италия', '*Словакия*',
+                                      '*Эстония*', '*Хорватия*', 'Румыния',
+                                      'Нидерланды'),
+                            Практик = c(12, 12, 11, 11, 10, 10, 10,
+                                              10, 10))
+kable(top.10.pract, format = 'html')
 
-(график линейчатой)
+```
+]]
+
+.pull-left[
+.small[
+```{r, echo = F, message = F, warning = F, results = 'as.is'}
+top.10.size <- data.frame(Страна = c('Венгрия', '*Польша*', 'Латвия',
+                                     'Болгария', '*Великобритания*',
+                                     '*Словакия*', 'Литва', '*Эстония*',
+                                     '*Хорватия*'),
+                            TED.от.ВВП = c(10.93, 7.22, 7.01,
+                                                   6.18, 5.96, 5.93,
+                                                   5.59, 5.56, 5.41))
+kable(top.10.size, format = 'html')
+
+```
+]]
+
+.tiny[
+*Источники статистики: 1)Еврокомиссия; 2)Detelj, K., Jagric, T., Markovic-Hribernik, T. (2016), «Exploration of the Effectiveness of Public Procurement for Innovation: Panel Analysis of EU Countries' Data»*
+]
+---
+
+**Результаты моделирования**
+
+<img src = './SmartNations_03-03-2020_files/pic-02.png', width = '900'>
+
+.small[
+- $Y$ — логарифм суммарной стоимости контрактов, млрд. €;   
+
+- $X$ — количество применяемых лучших практик.   
+]
 
 ---
 
-**Данные для моделей регрессии**
+**Результаты моделирования**
 
+<img src = './SmartNations_03-03-2020_files/pic-03.png', width = '900'>
 
----
+.small[
+- $Y$ — логарифм количества контрактов;   
 
-**Результаты моделирования: модели вариант 1**
-
----
-
-**Результаты моделирования: модели вариант 2**
+- $X$ — количество применяемых лучших практик.   
+]
 
 ---
 
