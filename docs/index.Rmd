@@ -22,4 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### ГУУ, 3 марта 2020
 
-* [Слайды](https://aksyuk.github.io/xaringan_gh/slides/SCIENCE/SmartNations_03-03-2020.html)
+* [Слайды 4:3](https://aksyuk.github.io/xaringan_gh/slides/SCIENCE/SmartNations_03-03-2020_4-3.html)   
+* [Слайды 16:9](https://aksyuk.github.io/xaringan_gh/slides/SCIENCE/SmartNations_03-03-2020_16-9.html)   
+* [pdf 4:3](https://aksyuk.github.io/xaringan_gh/slides/SCIENCE/SmartNations_03-03-2020_4-3.pdf)   
+* [pdf 16:9](https://aksyuk.github.io/xaringan_gh/slides/SCIENCE/SmartNations_03-03-2020_16-9.pdf)   

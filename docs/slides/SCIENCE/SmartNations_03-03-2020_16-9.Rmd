@@ -4,7 +4,7 @@ output:
     css: ["../css/guu-slides-theme.css"]
     seal: false
     nature:
-      ratio: '4:3'
+      ratio: '16:9'
       countIncrementalSlides: false
 ---
 
@@ -16,7 +16,7 @@ library('knitr')
 ```
 
 class: inverse, center, middle  
-background-image: url(../images/title_GERB-GUU_4-3.png)
+background-image: url(../images/title_GERB-GUU_16-9.png)
 background-size: cover
 
 </br></br>
@@ -45,13 +45,9 @@ background-size: cover
 
 ---
 
-**РФ: Национальная программа «Цифровая экономика Российской Федерации»**   
+**Нацпрограмма «Цифровая экономика РФ»**   
 
-.center[.small[
-Наибольшие расходы запланированы на 2020 год   
-]]
-
-<img src = './SmartNations_03-03-2020_files/pic-01.png', width = '900'>
+<img src = './SmartNations_03-03-2020_files/pic-01.png', height = '500'>
 
 ---
 
@@ -92,7 +88,7 @@ kable(top.10.size, format = 'html')
 
 **Результаты моделирования**
 
-<img src = './SmartNations_03-03-2020_files/pic-02.png', width = '900'>
+<img src = './SmartNations_03-03-2020_files/pic-02.png', height = '400'>
 
 .small[
 - $Y$ — логарифм суммарной стоимости контрактов, млрд. €;   
@@ -104,7 +100,7 @@ kable(top.10.size, format = 'html')
 
 **Результаты моделирования**
 
-<img src = './SmartNations_03-03-2020_files/pic-03.png', width = '900'>
+<img src = './SmartNations_03-03-2020_files/pic-03.png', height = '400'>
 
 .small[
 - $Y$ — логарифм количества контрактов;   
@@ -126,13 +122,20 @@ kable(top.10.size, format = 'html')
 
 ---
 
+class: inverse, center, middle  
+background-image: url(../images/title_GERB-GUU_16-9.png)
+background-size: cover
+
 </br></br></br></br>
 
 .center[
 ### Спасибо за внимание!
 ]
 
-</br></br>
+.left[.prc90[
+Докладчик: Светлана Андреевна Суязова [s.a.aksuk@gmail.com](mailto:s.a.aksuk@gmail.com)  ]]
+
+</br></br></br>
 
 .justify[.small[
 Статья подготовлена при финансовой поддержке Российского фонда фундаментальных исследований (проект № 18-010-01151, «Развитие методологии и инструментария стратегического планирования в условиях формирования цифровой экономики»)
