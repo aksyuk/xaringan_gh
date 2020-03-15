@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
-    <title>slides_practice_03.utf8</title>
+    <title></title>
     <meta charset="utf-8" />
     <link href="slides_practice_03_files/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/guu-slides-theme.css" type="text/css" />
+    <link rel="stylesheet" href="css/guu-slides-theme.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -13,7 +13,7 @@
 
 
 class: inverse, center, middle  
-background-image: url(../images/title_GERB-GUU_16-9.png)
+background-image: url(./images/title_GERB-GUU_16-9.png)
 background-size: cover
 
 ## OLAP-инструменты R
@@ -99,7 +99,6 @@ celsius_to_kelvin &lt;- function(temp_C) {
   temp_K &lt;- temp_C + 273.15
   return(temp_K)
 }
-
 # температура замерзания воды в кельвинах
 celsius_to_kelvin(0)
 ```
@@ -114,14 +113,13 @@ celsius_to_kelvin(0)
 
 
 ```r
-# Аргумент: temp_F -- температура по Фаренгейту
+# Аргумент: temp_F — температура по Фаренгейту
 # Возвращаемое значение: vector, double
 fahrenheit_to_kelvin &lt;- function(temp_F) {
   temp_C &lt;- fahrenheit_to_celsius(temp_F)
   temp_K &lt;- celsius_to_kelvin(temp_C)
   temp_K
 }
-
 # температура замерзания воды в кельвинах
 fahrenheit_to_kelvin(32)
 ```
@@ -134,7 +132,7 @@ fahrenheit_to_kelvin(32)
 
 ---
 
-Альтернативный подход -- вложенные вызовы:  
+Альтернативный подход — вложенные вызовы:  
 
 
 ```r
@@ -165,22 +163,29 @@ fahrenheit_to_celsius(c(0, 15, 32, 74))
 .small[
 
 ```r
-# Аргумент: temp_C -- температура по Цельсию
+# Аргумент: temp_C — температура по Цельсию
 # Возвращаемое значение: vector(1!), logical 
 is_temp_celsius_hot &lt;- function(temp_C) {
   if (temp_C &gt; 35) output &lt;- TRUE
   output
 }
 
-is_temp_celsius_hot(c(5, 18, 42))
-### Ошибка в is_temp_celsius_hot(c(5, 18, 42)) :объект 'output' не найден
-### Вдобавок: Предупреждение:
-### В if (temp_C &gt; 35) output &lt;- TRUE : 
-###     длина условия &gt; 1, будет использован только первый элемент
+is_temp_celsius_hot(c(12, 18, 42))
 ```
-]
 
-.red[ **`if` не поддерживает векторизацию!** ]
+.red[
+
+```
+## Ошибка в is_temp_celsius_hot(c(12, 18, 42)) :объект 'output' не найден
+##  Вдобавок: Предупреждение:
+##  В if (temp_C &gt; 35) output &lt;- TRUE :
+##   длина условия &gt; 1, будет использован только первый элемент
+```
+]]
+
+.red[
+**`if` не поддерживает векторизацию!**
+]
 
 ---
 
@@ -188,20 +193,22 @@ is_temp_celsius_hot(c(5, 18, 42))
 
 
 ```r
-# Аргумент: temp_C -- температура по Цельсию
+# Аргумент: temp_C — температура по Цельсию
 # Возвращаемое значение: vector, logical 
 is_temp_celsius_hot &lt;- function(temp_C) {
   temp_C &gt; 35
 }
 
-is_temp_celsius_hot(c(38, 18, 42))
+is_temp_celsius_hot(c(12, 18, 42))
 ```
 
 ```
-## [1]  TRUE FALSE  TRUE
+## [1] FALSE FALSE  TRUE
 ```
 
-.green[ ** при сравнении операторами `&lt;` `&gt;` векторизация работает ** ]
+.green[
+**Пользуемся векторизацией операторов `&lt;` `&gt;` `==` `!=`**
+]
 
 ---
 
@@ -212,8 +219,8 @@ is_temp_celsius_hot(c(38, 18, 42))
 
 ```r
 # Аргументы: 
-#  * temp -- температура, 
-#  * temp_scale -- шкала (F по умолчанию)
+#  * temp — температура, 
+#  * temp_scale — шкала (F по умолчанию)
 # Возвращаемое значение: vector, double 
 temp_to_celsius &lt;- function(temp, temp_scale = 'F') {
   output &lt;- rep(NA, length(temp))
@@ -269,7 +276,7 @@ temp_to_celsius_bad &lt;- function(temp) {
 
 
 ```r
-temp_scale &lt;- 'C'  # это глобальный temp_scale
+temp_scale &lt;- 'C'  # это глобальная temp_scale
 temp_to_celsius_bad(df_weather$temp)
 ```
 
@@ -279,14 +286,15 @@ temp_to_celsius_bad(df_weather$temp)
 
 
 ```r
-# глобальной переменной temp_scale нет
-temp_to_celsius_bad(temp)
+rm(temp_scale)     # глобальной переменной temp_scale нет
+temp_to_celsius_bad(df_weather$temp)
 ```
 
 .red[
 
 ```
-## Error: object 'temp' not found
+## Ошибка в temp_to_celsius_bad(df_weather$temp) : 
+## объект 'temp_scale' не найден
 ```
 ]
 
@@ -353,7 +361,7 @@ OutliersPlot(x, x.labels) # запуск функции
 ---
 
 .center[
-![](slides_practice_03_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+![](slides_practice_03_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
 
 ```
 ##   out.values out.labels
@@ -378,7 +386,7 @@ OutliersPlot(x, x.labels)
 ]
 
 .pull-right[.center[
-![](slides_practice_03_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+![](slides_practice_03_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
 
 ```
 ##   out.values out.labels
@@ -443,9 +451,35 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
-
-<script>
+})();
+(function() {
+  "use strict"
+  /* Replace <script> tags in slides area to make them executable
+   *
+   * Runs after post-processing of markdown source into slides and replaces only
+   * <script>s on the last slide of continued slides using the .has-continuation
+   * class added by xaringan. Finally, any <script>s in the slides area that
+   * aren't executed are commented out.
+   */
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container:not(.has-continuation) script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+  var scriptsNotExecuted = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container.has-continuation script'
+  );
+  if (!scriptsNotExecuted.length) return;
+  for (var i = 0; i < scriptsNotExecuted.length; i++) {
+    var comment = document.createComment(scriptsNotExecuted[i].outerHTML)
+    scriptsNotExecuted[i].parentElement.replaceChild(comment, scriptsNotExecuted[i])
+  }
+})();
 (function() {
   var links = document.getElementsByTagName('a');
   for (var i = 0; i < links.length; i++) {
@@ -453,8 +487,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       links[i].target = '_blank';
     }
   }
-})();
-</script>
+})();</script>
 
 <script>
 slideshow._releaseMath = function(el) {

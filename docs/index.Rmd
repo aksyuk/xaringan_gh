@@ -17,6 +17,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * [Практика №3: Пользовательские функции.  26.02.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_03.html)   
 
+* [Практика №4: OLAP-куб и операции с ним.  18.03.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_OLAP.html)   
+
 ### Дисциплина “Информационные технологии в экономике”    
 
 * [Сбор данных для семестровой. 17.02.2020](https://aksyuk.github.io/xaringan_gh/slides/itve/slides_01.html)   
