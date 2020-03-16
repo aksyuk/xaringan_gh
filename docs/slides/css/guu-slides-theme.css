@@ -180,22 +180,10 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
   font-size: 70%;
 }
 
-.prc90 {
-  font-size: 90%;
-}
-
-.large {
-  font-size: 130%;
-}
-
 .red {
   color: red;
 }
 
-.justify {
-  text-align: justify;
-}
-
-.tiny {
-  font-size: 60%;
+.green {
+  color: green;
 }
