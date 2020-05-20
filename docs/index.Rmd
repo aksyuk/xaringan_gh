@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
+
 ### Дисциплина “ИТ в экономике”    
 
 * [Сбор данных для семестровой. 17.02.2020](https://aksyuk.github.io/xaringan_gh/slides/itve/slides_01.html)   
