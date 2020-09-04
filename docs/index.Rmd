@@ -9,19 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-<<<<<<< HEAD
 ### Дисциплина “Практикум на ЭВМ 4 (Введение в R)”    
 
 * [Практика №1: Основы. 04.09.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_01_pmi.html)   
 
-
-=======
-
-### Дисциплина “ИТ в экономике”    
-
-* [Сбор данных для семестровой. 17.02.2020](https://aksyuk.github.io/xaringan_gh/slides/itve/slides_01.html)   
->>>>>>> fd7c6f7885e0f2930392f33850d9a5c2085460b3
-
-### Установочная к ГЭК для ПМИ 4-1
-
-* [20.05.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_gek_review.html)  
