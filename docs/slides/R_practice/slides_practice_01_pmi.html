@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
-    <title>slides_practice_01.utf8</title>
+    <title>slides_practice_01_pmi.utf8</title>
     <meta charset="utf-8" />
-    <link href="slides_practice_01_files/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="slides_practice_01_pmi_files/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="..\css\guu-slides-theme.css" type="text/css" />
   </head>
   <body>
@@ -16,11 +16,11 @@ class: inverse, center, middle
 background-image: url(../images/title_GERB-GUU_16-9.png)
 background-size: cover
 
-## OLAP-инструменты R
+## Практикум на ЭВМ 4
 
 ### Светлана Андреевна Суязова (Аксюк) &lt;/br&gt; [s.aksuk@kiber-guu.ru](mailto:s.aksuk@kiber-guu.ru)  
 
-12 февраля 2020
+4 сентября 2020
 
 ---
 
@@ -31,11 +31,11 @@ background-size: cover
 - балльно-рейтинговая система   
 
 .pull-left[.center[
-&lt;img src="./slides_practice_01_files/R.jpg" width="45%"&gt;
+&lt;img src="./slides_practice_01_pmi_files/R.jpg" width="45%"&gt;
 ]]
 
 .pull-right[.center[
-&lt;img src="./slides_practice_01_files/RStudio-Logo-Flat.png" width="100%"&gt;
+&lt;img src="./slides_practice_01_pmi_files/RStudio-Logo-Flat.png" width="100%"&gt;
 ]]
 
 ---
@@ -64,7 +64,7 @@ background-size: cover
 
 В 2017 ‒ 2019 гг. `R` на пятом месте среди инструментов Data Science, данные поисковика работы по всему миру indeed.com   
 
-&lt;img src="./slides_practice_01_files/Fig-1a-IndeedJobs-2019-1.png" width="120%" align = "center"&gt;
+&lt;img src="./slides_practice_01_pmi_files/Fig-1a-IndeedJobs-2019-1.png" width="120%" align = "center"&gt;
 
 &lt;font size = "4px"&gt;
 Источник: &lt;a href = "http://r4stats.com/articles/popularity/"&gt;The Popularity of Data Science Software, r4stats.com&lt;/a&gt;
@@ -74,7 +74,7 @@ background-size: cover
 
 В 2018 гг. `R` на втором месте по использованию в академических исследованиях (упоминания в Google Scholar) 
 
-&lt;img src="./slides_practice_01_files/Fig_2a_ScholarlyImpact2018-1.png" width="120%" align = "center"&gt;
+&lt;img src="./slides_practice_01_pmi_files/Fig_2a_ScholarlyImpact2018-1.png" width="120%" align = "center"&gt;
 
 &lt;font size = "4px"&gt;
 Источник: &lt;a href = "http://r4stats.com/articles/popularity/"&gt;The Popularity of Data Science Software, r4stats.com&lt;/a&gt;
@@ -84,11 +84,13 @@ background-size: cover
 
 На hh.ru количество вакансий с упоминанием `R` в 2018 году выросло на 218% к прошлому году и составило 947.   
 
-&lt;img src="./slides_practice_01_files/ykb2duqixlf_xvguploejrso9qy.png" width="120%" align = "center"&gt;
+&lt;img src="./slides_practice_01_pmi_files/ykb2duqixlf_xvguploejrso9qy.png" width="120%" align = "center"&gt;
 
 &lt;font size = "4px"&gt;
 Источник: &lt;a href = "https://habr.com/ru/company/hh/blog/418079/"&gt;Наиболее востребованные языки программирования – 2018, habr.com&lt;/a&gt;
 &lt;/font&gt;
+
+Бесконечный спор "R против Python": &lt;a href = "https://habr.com/ru/post/337330/"&gt;habr.com, Какой язык программирования выбрать для работы с данными?&lt;/a&gt;
 
 ---
 
@@ -98,11 +100,8 @@ background-size: cover
 - базовая графика  
 - пользовательские функции  
 - интерактивные отчёты на Rmarkdown, публикация скриптов и отчётов на rpubs.com и github.com   
-- "предварительный анализ данных (кросс-секционная выборка) 
+- предварительный анализ данных (кросс-секционная выборка) 
 - линейные регрессионные модели: идентификация, исследование остатков, прогноз    
-- инструменты OLAP в R    
-- предварительный анализ данных   
-
 ---
 
 ## Материалы    
@@ -111,7 +110,7 @@ background-size: cover
 
 - Методические указания к выполнению лабораторных работ по дисциплине "Практикум на ЭВМ 4". ‒ М.: ГУУ, 2019.  
 
-- сайт дисциплины: &lt;a href = "http://bit.ly/R-page"&gt;bit.ly/R-page&lt;/a&gt;
+- сайт дисциплины: &lt;a href = "http://bit.ly/Rrr2019"&gt;bit.ly/Rrr2019&lt;/a&gt;
 
 ---
 
@@ -143,6 +142,7 @@ background-size: cover
 
 - числовой, целый: `integer`   
 - числовой, с плавающей **точкой**: `double`   
+- разделитель целой и дробной части -- точка   
 
 .pull-left[
 
@@ -185,11 +185,13 @@ typeof(6.5)
 
 ### Типы переменных    
 
-- текстовый: `character`  
+- текстовый: `character`    
+- пишем в кавычках, кавычки равнозначны      
 
+.small[
 
 ```r
-typeof("Введение в язык R")
+typeof("Практикум на ЭВМ 4")
 ```
 
 ```
@@ -197,7 +199,7 @@ typeof("Введение в язык R")
 ```
 
 ```r
-typeof('Курс "Введение в язык R"')
+typeof('Дисциплина "Практикум на ЭВМ 4"')
 ```
 
 ```
@@ -211,14 +213,15 @@ typeof('42')
 ```
 ## [1] "character"
 ```
+]
 
 ---
 
 ### Типы переменных    
 
-- логический: `logical`  
-
-`F` равносильно `FALSE`, `T` равносильно `TRUE`  
+- логический: `logical`    
+- `F` равносильно `FALSE`, `T` равносильно `TRUE`    
+- работает неявное преобразование типов    
 
 
 ```r
@@ -279,7 +282,7 @@ x == y
 
 ### Структуры данных  
 
-**Матрица** – вектор с двумя измерениями.   
+**Матрица** – вектор с двумя измерениями. Функция `matrix()`.     
 
 
 ```r
@@ -306,8 +309,9 @@ dim(x.matrix)
 
 ### Структуры данных  
 
-**Список** – одномерный набор элементов, типы м.б. разными.   
+**Список** – одномерный набор элементов, типы м.б. разными. Функция `list()`.      
 
+.small[
 
 ```r
 my.list &lt;- list(index.name = "ВВП РФ, трлн долл.", 
@@ -325,12 +329,13 @@ my.list
 ## $value
 ## [1] 2.06 1.37 1.28 1.58
 ```
+]
 
 ---
 
 ### Структуры данных  
 
-**Фрейм данных** (`data.frame`) – таблица с показателями-столбцами (векторы) и наблюдениями-строками, **список векторов**.  
+**Фрейм данных** – таблица с показателями-столбцами (векторы) и наблюдениями-строками, **список векторов**. Функция `data.frame()`.    
 
 
 ```r
@@ -351,6 +356,9 @@ df.2019
 ---
 
 ### Структуры данных: фрейм    
+
+- функция `str()` показывает структуру фрейма    
+- функция `colnames()` выводит имена столбцов    
 
 
 ```r
@@ -565,8 +573,8 @@ lapply(df.2019, mean)
 ```
 
 ```
-## Warning in mean.default(X[[i]], ...): argument is not numeric
-## or logical: returning NA
+## Warning in mean.default(X[[i]], ...): аргумент не является числовым или логическим:
+## возвращаю NA
 ```
 
 ```
@@ -601,12 +609,20 @@ RSiteSearch('apply')
 
 ### Распространённые ошибки
 
+- `c()` написана по-русски   
+
+.small[
 
 ```r
 с(1, 2, 3, 4)
 ```
-`Error in с(1, 2, 3, 4) : could not find function "с"`
 
+`Error in с(1, 2, 3, 4) : could not find function "с"`
+]
+
+- применение числовых функций к символьным векторам   
+
+.small[
 
 ```r
 df.2019$city
@@ -622,6 +638,7 @@ sum(df.2019$city)
 ```
 
 `Error in sum(df.2019$city) : invalid 'type' (character) of argument`
+]
 
 ---
 
@@ -632,7 +649,7 @@ sum(df.2019$city)
 - Приступить к выполнению упражнений 1-4. Номер варианта - ваш номер в списке группы.   
 
 .center[
-&lt;img src="./slides_practice_01_files/Professortocat_v2.png" width="23%"&gt;
+&lt;img src="./slides_practice_01_pmi_files/Professortocat_v2.png" width="23%"&gt;
 &lt;font size = "4px"&gt;image credit: krman009@github.com&lt;/font&gt;
 ]
     </textarea>
