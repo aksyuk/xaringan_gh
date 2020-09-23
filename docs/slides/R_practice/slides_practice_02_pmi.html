@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>slides_practice_02_pmi.utf8</title>
+    <meta charset="utf-8" />
+    <link href="slides_practice_02_pmi_files/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="..\css\guu-slides-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+class: inverse, center, middle  
+background-image: url(../images/title_GERB-GUU_16-9.png)
+background-size: cover
+
+## Практикум на ЭВМ 4
+
+### Светлана Андреевна Суязова (Аксюк) &lt;/br&gt; [s.aksuk@kiber-guu.ru](mailto:s.aksuk@kiber-guu.ru)  
+
+23 сентября 2020
+
+---
+
+## Базовая графика в `R`    
+
+<i class="fas  fa-chart-area " style="color:#1E8449;"></i> все средства находятся в базовой сборке (`base`);
+
+--
+
+<i class="fas  fa-chart-line " style="color:#1E8449;"></i> можно собрать любой статический график с нуля   
+
+--
+
+<i class="fas  fa-chart-bar " style="color:#1E8449;"></i> результат сложно сохранить как объект   
+
+--
+
+<i class="fas  fa-image " style="color:#1E8449;"></i> вывод на графическое устройство: экран, файл   
+
+--
+
+<i class="fas  fa-code " style="color:#1E8449;"></i> Чтобы сделать красиво, нужно очень много кода   
+
+---
+
+## Базовая графика в `R`    
+
+- График собирается “слоями”, предыдущие слои нельзя отменить  
+
+- Начинается с функции высокого уровня: `plot()`, `curve()`, `boxplot()`, `hist()` и др.   
+
+- Элементы добавляются на активный график функциями низкого уровня: `points()`, `abline()`, `axis()`, `mtext()`, `text()` и др.  
+
+---
+
+## Пример простого графика `base`   
+
+.pull-left[
+
+```r
+plot(mtcars$mpg, 
+   mtcars$hp,
+   pch = 21, 
+   col = mtcars$cyl,
+   bg = mtcars$cyl, 
+   cex = 2)
+```
+- оси пересекаются между делениями  
+- непонятные подписи осей  
+- мелкий текст  
+]
+.pull-right[
+![](slides_practice_02_pmi_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Отключаем оси...   
+
+.pull-left[
+
+```r
+plot(mtcars$mpg, 
+     mtcars$hp,
+     pch = 21, 
+     col = mtcars$cyl,
+     bg = mtcars$cyl, 
+     cex = 2,
+     # пустые подписи осей
+     xlab = '', ylab = '', 
+     # скрыть сами оси
+     axes = F)
+```
+]
+.pull-right[
+![](slides_practice_02_pmi_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## ...перерисовываем оси...   
+
+.pull-left[
+
+```r
+# строим график без осей
+plot(...)
+
+# оси c настройками
+axis(1, pos = 50, 
+     cex.axis = 2)
+axis(2, pos = 10, las = 2,
+     cex.axis = 2)
+
+# добавляем стрелки
+arrows(x0 = c(30, 10), 
+       y0 = c(50, 300),
+       x1 = c(34, 10), 
+       y1 = c(50, 345))
+```
+]
+.pull-right[
+![](slides_practice_02_pmi_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## ...добавляем подписи осей...  
+
+.pull-left[
+
+```r
+# ширина полей графика
+par(mar = c(4, 6, 6, 1))
+
+plot(...)    # график 
+axis(...)    # оси 
+arrows(...)  # стрелки
+
+# подписи осей  
+mtext("Миль на галлон", 
+      side = 1, line = 2, 
+      cex = 2)
+mtext("Мощность, лс", 
+      side = 2, line = 4, 
+      cex = 2)
+```
+]
+.pull-right[
+![](slides_practice_02_pmi_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## ...добавляем заголовок...  
+
+.pull-left[
+
+```r
+par(...)     # поля 
+plot(...)    # график 
+axis(...)    # оси 
+arrows(...)  # стрелки
+mtext(...)   # подписи осей 
+
+# заголовок
+mtext("Автомобили 1973-74", 
+      side = 3, line = 3, 
+      cex = 2, font = 2)
+# подзаголовок
+mtext('данные "mtcars"', 
+      side = 3, line = 1.5, 
+      cex = 1.5, font = 3)
+```
+]
+.pull-right[
+![](slides_practice_02_pmi_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## ...добавляем легенду  
+
+.pull-left[
+
+```r
+par(...)    # поля 
+plot(...)   # график 
+axis(...)   # оси 
+arrows(...) # стрелки
+mtext(...)  # подписи осей 
+mtext(...)  # заголовки
+
+# легенда
+mark &lt;- unique(mtcars$cyl)
+legend('topright', 
+  legend = paste(mark, 
+              'цилиндров'),
+  fill = mark)
+```
+]
+.pull-right[
+![](slides_practice_02_pmi_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Итого десять вызовов функций  
+
+.small[
+
+```r
+par(mar = c(4, 6, 6, 1))       # поля графика
+
+# сам график без осей
+plot(mtcars$mpg, mtcars$hp, pch = 21, col = mtcars$cyl, 
+     bg = mtcars$cyl, cex = 2, xlab = '', ylab = '', axes = F)
+# оси
+axis(1, pos = 50, cex.axis = 2)
+axis(2, pos = 10, cex.axis = 2, las = 2)
+# стрелки на концах осей
+arrows(x0 = c(30, 10), y0 = c(50, 300), x1 = c(34, 10), y1 = c(50, 345))
+# подписи осей
+mtext("Миль на галлон", side = 1, line = 2, cex = 2)
+mtext("Мощность, лс", side = 2, line = 3.5, cex = 2)
+
+# заголовок и подзаголовок графика
+mtext("Автомобили 1973-74", side = 3, line = 3, cex = 2, font = 2)
+mtext('данные "mtcars"', side = 3, line = 1.5, cex = 1.5, font = 3)
+
+# легенда
+legend('topright', legend = paste(unique(mtcars$cyl), 'цилиндров'),
+       fill = unique(mtcars$cyl))
+```
+] 
+
+---
+
+## Основные функции верхнего уровня  
+
+`plot()` – подстраивается под данные: график разброса, временного ряда, графики для объектов специальных типов: дендрограммы, график осыпи, остатки регрессии, и т.д.  
+
+`boxplot()` – коробчатые диаграммы;   
+
+`hist()` – гистограммы;  
+
+`pie()` – круговая диаграмма.  
+
+---
+
+## Основные функции нижнего уровня  
+
+`abline()` – добавляет прямую на график;  
+
+`points()` – добавляет точки наблюдений;   
+
+`lines()` – добавляет линию по точкам;  
+
+`curve()` – строит кривую по заданой функции.  
+
+---
+
+## Несколько графиков рядом  
+
+.pull-left[
+
+```r
+attach(mtcars)
+# разбивка полотна
+layout(matrix(1:4, 2, 2,
+              byrow = T))
+# графики
+plot(mpg, hp, 
+     pch = 21, bg = cyl)
+plot(disp, hp, pch = 21, 
+     bg = cyl)
+plot(mpg, wt, 
+     pch = 21, bg = cyl)
+plot(disp, wt, 
+     pch = 21, bg = cyl)
+detach(mtcars)
+```
+]
+.pull-right[
+![](slides_practice_02_pmi_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Несколько графиков рядом  
+
+.pull-left[
+
+```r
+ly.mat &lt;- matrix(c(1, 1, 1,
+           2, 3, 4), 
+        2, 3, byrow = T)
+ly.mat
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]    1    1    1
+## [2,]    2    3    4
+```
+
+
+```r
+# разбивка полотна
+layout(ly.mat)
+plot(...)   # все графики
+...
+```
+]
+.pull-right[
+![](slides_practice_02_pmi_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Сохранение в файл
+
+
+```r
+# открыть файл в рабочей директории
+#  для записи (если не существует, будет создан)
+png('RPlot.png', width = 600)
+
+# код создания графика
+plot(...)
+
+# закрыть устройство графического вывода
+dev.off()
+```
+
+- если файл пуст, значит, устройство вывода не закрыто   
+
+- длину/ширину можно задавать в пикселях (по умолчанию), сантиметрах и т.д.   
+
+---
+
+### Практическая часть занятия  
+
+- Прочитать главу 3 учебного пособия "Введение в язык статистической обработки данных R", повторить все примеры.   
+
+- Приступить к выполнению упражнений 5-7. Номер варианта - ваш номер в списке группы.   
+
+.center[
+&lt;img src="./slides_practice_02_files/twenty-percent-cooler-octocat.png" width="23%"&gt;
+&lt;font size = "4px"&gt;image credit: krman009@github.com&lt;/font&gt;
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

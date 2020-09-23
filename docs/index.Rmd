@@ -13,3 +13,4 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * [Практика №1: Основы. 04.09.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_01_pmi.html)   
 
+* [Практика №2: Базовая графика. 23.09.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_02_pmi.html)   
