@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>slides_excersises_01_pmi.utf8</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\css\guu-slides-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+class: inverse, center, middle  
+background-image: url(../images/title_GERB-GUU_16-9.png)
+background-size: cover
+
+## Практикум на ЭВМ 4
+
+### Светлана Андреевна Суязова (Аксюк) &lt;/br&gt; [s.aksuk@kiber-guu.ru](mailto:s.aksuk@kiber-guu.ru)  
+
+7 октября 2020
+
+---
+
+### Популярные ошибки из первой практики   
+
+
+```r
+df &lt;- data.frame(label = letters[1:5],
+                 var.1 = rnorm(12, 4, n = 5))
+
+# обращаемся к столбцу фрейма
+df$var.1
+```
+
+```
+## [1]  7.092518 13.539541 11.165016 18.183130 16.289502
+```
+
+```r
+# а вот это уже слишком
+df$var.1[1:5]
+```
+
+```
+## [1]  7.092518 13.539541 11.165016 18.183130 16.289502
+```
+
+
+---
+
+### Популярные ошибки из первой практики   
+
+
+
+
+.small[
+
+```r
+df.FGLab    # фрейм с данными по сотрудникам лаборатории
+```
+
+```
+##                             Имя Пол Рост Вес Возраст Размер.майки
+## 1                 Окабе Ринтаро муж  177  59      18            L
+## 2                   Шиина Маюри жен  152  45      16            S
+## 3                  Хашида Итару муж  164  98      19          XXL
+## 4                 Макисе Курису жен  160  45      18            S
+## 5                Урушибара Рука муж  161  44      16           XS
+## 6 Фейрис Нян-Нян (Акиха Румико) жен  143  43      17            S
+## 7                   Кирию Моэка жен  167  54      20            M
+## 8                  Сузуха Амане жен  163  51      18            M
+```
+
+```r
+max(df.FGLab[df.FGLab$Пол == "жен", 'Рост'])     # ищем самую высокую женщину
+```
+
+```
+## [1] 167
+```
+
+```r
+max(df.FGLab$Рост)
+```
+
+```
+## [1] 177
+```
+]
+
+
+---
+
+### Популярные ошибки из первой практики   
+
+
+
+
+.small[
+
+```r
+# ищем самую высокую женщину
+
+# фильтрация уже заложена в функции максимума
+df.FGLab[df.FGLab$Рост == max(df.FGLab[df.FGLab$Пол == "жен", 'Рост']), 'Имя']
+```
+
+```
+## [1] "Кирию Моэка"
+```
+
+```r
+# ошибка из-за неверной фильтрации
+df.FGLab[df.FGLab$Рост == max(df.FGLab$Рост) &amp; df.FGLab$Пол == 'жен', 'Имя']
+```
+
+```
+## character(0)
+```
+]
+
+
+---
+
+### Популярные ошибки из первой практики   
+
+.small[
+
+```r
+# структура фрейма
+str(iris)
+```
+
+```
+## 'data.frame':	150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+```
+]
+
+Сколько наблюдений?   
+Сколько числовых переменных?   
+Сколько факторов?   
+
+
+---
+
+&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;
+&lt;center&gt;&lt;h1&gt; Выполнение упражнений 5-9 &lt;/h1&gt;&lt;/center&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
