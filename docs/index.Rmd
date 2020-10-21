@@ -18,4 +18,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * [Практика №3: Пользовательские функции. 02.10.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_03_pmi.html)   
 
+
 * [07.10.2020: типичные ошибки в упражнениях 1-4.](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_excersises_01_pmi.html)   
+
+
+* [Практика №4: ЛР№1, Предварительный анализ данных для линейной регрессии. 21.10.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_04_pmi.html)   
+
