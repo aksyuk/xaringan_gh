@@ -24,3 +24,4 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * [Практика №4: ЛР№1, Предварительный анализ данных для линейной регрессии. 21.10.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_04_pmi.html)   
 
+* [Практика №5: ЛР№2, Регрессионные модели. 17.11.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_05_pmi.html)   
