@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>slides_practice_06.utf8</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/guu-slides-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+class: inverse, center, middle  
+background-image: url(../images/title_GERB-GUU_16-9.png)
+background-size: cover
+
+## Практикум на ЭВМ 4
+
+### Светлана Андреевна Суязова (Аксюк) &lt;/br&gt; [s.aksuk@kiber-guu.ru](mailto:s.aksuk@kiber-guu.ru)  
+
+2 декабря 2020
+
+---
+
+## Проверка остатков регрессионной модели       
+
+- График остатков    
+- Проверка условий Гаусса-Маркова    
+- Поиск влияющих и аномальных наблюдений     
+
+---
+
+**Остатки vs модельные** – первый график диагностики
+
+.center[
+![Остатки vs модельные](./slides_practice_06_files/diagnostics1.jpeg)
+]
+
+.small[
+&lt;a href="https://data.library.virginia.edu/diagnostic-plots/"&gt;Источник&lt;/a&gt;
+]
+
+---
+
+**Квантиль-квантиль** – второй график диагностики
+
+.center[
+![Остатки vs модельные](./slides_practice_06_files/diagnostics2.jpeg)
+]
+
+.small[
+&lt;a href="https://data.library.virginia.edu/diagnostic-plots/"&gt;Источник&lt;/a&gt;
+]
+
+---
+
+**Стандартизованные остатки vs модельные** – третий график
+
+.center[
+![Остатки vs модельные](./slides_practice_06_files/diagnostics3.jpeg)
+]
+
+.small[
+&lt;a href="https://data.library.virginia.edu/diagnostic-plots/"&gt;Источник&lt;/a&gt;
+]
+
+---
+
+**Остатки vs влияние** – пятый график диагностики
+
+.center[
+![Остатки vs модельные](./slides_practice_06_files/diagnostics5.jpeg)
+]
+
+.small[
+&lt;a href="https://data.library.virginia.edu/diagnostic-plots/"&gt;Источник&lt;/a&gt;
+]
+
+---
+
+#### Виды влияющих наблюдений   
+
+.center[
+![Остатки vs модельные](./slides_practice_06_files/pic-01.png)
+]
+
+*(a)* искажает константу модели, увеличивает ошибку;   
+
+*(b)* искажает коэффициент модели, увеличивает ошибку;   
+
+*(c)* неаномально по модели.     
+
+---
+
+##### Пример на данных по потреблению алкоголя
+
+.small[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Модель &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Формула &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; R.2.скорр &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; F.расч &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Станд.Ошибка &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; fit.X1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .small[ `\(Y = 16.65-0.19 \cdot Rural.2011\)` ] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.323 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 37.74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; fit.X1.fo &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .small[ `\(Y = 13.77-0.09 \cdot Rural.2011-6.23 \cdot FOСКФО\\-4.13 \cdot FOЮФО+0.14 \cdot Rural.2011.FOСЗФО\\\)` ] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.563 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25.81 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; fit.X2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .small[ `\(Y = 3.03+0.08 \cdot Injury.2011\)` ] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.166 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16.28 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; fit.X2.fo &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; .small[ `\(Y = 32.66-0.19 \cdot Injury.2011-29.33 \cdot FOПФО\\-18.05 \cdot FOСЗФО-36.65 \cdot FOСКФО\\-22.17 \cdot FOСФО-47.32 \cdot FOУФО\\-26.84 \cdot FOЦФО-32.13 \cdot FOЮФО\\+0.27 \cdot Injury.2011.FOПФО+0.2 \cdot Injury.2011.FOСЗФО\\+0.31 \cdot Injury.2011.FOСКФО+0.2 \cdot Injury.2011.FOСФО\\+0.42 \cdot Injury.2011.FOУФО+0.25 \cdot Injury.2011.FOЦФО\\+0.27 \cdot Injury.2011.FOЮФО-0.19 \cdot Injury.2011\\\)` ] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.654 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.71 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.5 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+
+### График разброса остатков   
+
+.pull-left[
+.small[
+
+```r
+# сохранённые модели
+load('Пример_алкоголь_модели.RData')
+
+# лучшая модель
+fit.X2.fo &lt;- models.list[['fit.X2.fo']]
+
+# первый график диагностики
+plot(fit.X2.fo, 1)
+```
+]]
+
+.pull-right[
+.center[
+
+&lt;img src = "./slides_practice_06_files/plot-01.png"&gt;&lt;/img&gt;
+]]
+
+---
+
+### График нормальных квантилей (Q-Q)   
+
+.pull-left[
+.small[
+
+```r
+# второй график диагностики
+plot(fit.X2.fo, 2)
+```
+]]
+
+.pull-right[
+.center[
+
+&lt;img src = "./slides_practice_06_files/plot-02.png"&gt;&lt;/img&gt;
+]]
+
+---
+
+### Разброс стандартизованных остатков    
+
+.pull-left[
+.small[
+
+```r
+# третий график диагностики
+plot(fit.X2.fo, 3)
+```
+]]
+
+.pull-right[
+.center[
+
+&lt;img src = "./slides_practice_06_files/plot-03.png"&gt;&lt;/img&gt;
+]]
+
+---
+
+### График расстояний Кука    
+
+.pull-left[
+.small[
+
+```r
+# четвёртый график диагностики
+plot(fit.X2.fo, 4)
+```
+
+`\(Cook.d_i = \frac{\sum_{j=1}^n{(\hat{Y}_j - \hat{Y}_{j(i)}})^2} {p \cdot MSE},\)`
+&lt;/br&gt;
+где `\(\hat{Y}_j\)` – прогнозы по всей выборке; `\(\hat{Y}_{j(i)}\)` – прогнозы по модели, построенной по выборке без `\(i\)`-го наблюдения; `\(p\)` – количество параметров модели.   
+
+&lt;a href="http://www.machinelearning.ru/wiki/index.php?title=%D0%A0%D0%B0%D1%81%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D0%B5_%D0%9A%D1%83%D0%BA%D0%B0"&gt;Источник&lt;/a&gt;
+
+Эвристики для отбора влияющих: &lt;/br&gt; 1) `\(Cook.d_i &gt; 1\)`; 2) `\(Cook.d_i &gt; 4/n\)`; &lt;/br&gt;3) `\(Cook.d_i &gt; F_{0.5}(p, n-p)\)`.  
+
+&lt;a href="https://en.wikipedia.org/wiki/Cook%27s_distance"&gt;Источник&lt;/a&gt;
+
+]]
+
+.pull-right[
+.center[
+
+&lt;img src = "./slides_practice_06_files/plot-04.png"&gt;&lt;/img&gt;
+]]
+
+
+---
+
+### Разброс остатков против оценок влияния     
+
+.pull-left[
+.small[
+
+```r
+# пятый график диагностики
+plot(fit.X2.fo, 5)
+```
+]]
+
+.pull-right[
+.center[
+
+&lt;img src = "./slides_practice_06_files/plot-05.png"&gt;&lt;/img&gt;
+]]
+
+---
+
+#### Считаем статистики для наблюдений     
+
+
+```r
+h &lt;- augment(fit.X2.fo, reg.df)
+rownames(h) &lt;- rownames(reg.df)
+colnames(h)
+```
+
+```
+##  [1] ".rownames"            "FO"                   "Retail.Vodka.2011.ps"
+##  [4] "Rural.2011"           "Wage.ps.2011"         "Injury.2011"         
+##  [7] ".fitted"              ".std.resid"           ".hat"                
+## [10] ".sigma"               ".cooksd"
+```
+
+```r
+# регионы с номерами 8, 72
+lev &lt;- h[rownames(reg.df) %in% c(8, 72), 
+         '.cooksd', drop = F]
+```
+
+---
+
+#### Влияющие наблюдения   
+
+
+```r
+# медианное F-значение - порог для отсечения влияющих
+n &lt;- nrow(reg.df)
+p &lt;- nrow(summary(fit.X2.fo)$coeff) - 1
+f.median &lt;- qf(1 - 0.5, df1 = p, df2 = n - p)
+cut.1 &lt;- 1  # порог = 1
+cut.4.n &lt;- round(4 / nrow(reg.df), 2)  # порог = 4 / n
+
+# сравниваем расчётные значения с порогами
+cbind(leverage=round(lev,2), f.median=round(f.median,2),
+      cut.1, cut.4.n)
+```
+
+```
+##   .cooksd f.median cut.1 cut.4.n
+## 1    0.92     0.97     1    0.05
+## 2    0.51     0.97     1    0.05
+```
+
+---
+
+#### Проверка равенства среднего остатков нулю   
+
+
+```r
+# t-тест для среднего
+t.test(fit.X2.fo$residuals, mu=0, alternative='two.sided')
+```
+
+```
+## 
+## 	One Sample t-test
+## 
+## data:  fit.X2.fo$residuals
+## t = 5.9559e-17, df = 77, p-value = 1
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  -0.5007861  0.5007861
+## sample estimates:
+##    mean of x 
+## 1.497867e-17
+```
+
+---
+
+#### Проверка на постоянство среднего остатков    
+
+
+```r
+# первая половина остатков
+res.s1 &lt;- fit.X2.fo$residuals[1:(n / 2)]
+
+# вторая половина остатков
+res.s2 &lt;- fit.X2.fo$residuals[(n / 2):n]
+  
+# t-тест для равенства средних
+t.t &lt;- t.test(res.s1, res.s2, alternative = 'two.sided')
+res &lt;- c(t.t$statistic, t.t$p.value)
+names(res) &lt;- c('t.расч', 'P-значение')
+round(res, 4)
+```
+
+```
+##     t.расч P-значение 
+##    -0.0739     0.9413
+```
+
+---
+
+#### Тесты на гетероскедастичность   
+
+
+```r
+# тест Бройша-Пагана 
+bptest(fit.X2.fo)
+```
+
+```
+## 
+## 	studentized Breusch-Pagan test
+## 
+## data:  fit.X2.fo
+## BP = 19.8, df = 15, p-value = 0.1798
+```
+
+---
+
+#### Тесты на автокорреляцию    
+
+
+```r
+# тест Дарбина-Уотсона на автокорреляцию
+dwtest(fit.X2.fo, alternative = 'two.sided')
+```
+
+```
+## 
+## 	Durbin-Watson test
+## 
+## data:  fit.X2.fo
+## DW = 2.0019, p-value = 0.4655
+## alternative hypothesis: true autocorrelation is not 0
+```
+
+---
+
+### Практическая часть занятия  
+
+- Повторить код примера: &lt;a href = "https://github.com/aksyuk/R-Practice-basics/blob/master/RScripts/manual_labs/lab_03.R"&gt;lab_03.R&lt;/a&gt;.
+
+- Прочитать указания к лабораторной №3: &lt;a href = "https://github.com/aksyuk/R-Practice-basics/blob/master/RScripts/manual_labs/TASK_lab_03.md"&gt;TASK_lab_03.md&lt;/a&gt;   
+
+- Приступить к выполнению упр. 12 и лабораторной №3. 
+
+.center[
+&lt;img src="./slides_practice_04_files/hubot.jpg" width="23%"&gt;
+&lt;font size = "4px"&gt;image credit: octodex.github.com&lt;/font&gt;
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
