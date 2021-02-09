@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>slides_01.utf8</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="..\css\guu-slides-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../css/guu-slides-theme.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -17,9 +17,23 @@ background-size: cover
 
 ## Информационные технологии в экономике
 
-### Светлана Андреевна Суязова (Аксюк) &lt;/br&gt; [s.aksuk@kiber-guu.ru](mailto:s.aksuk@kiber-guu.ru)  
+### Светлана Андреевна Суязова (Аксюк) &lt;/br&gt; [sa_aksyuk@guu.ru](mailto:sa_aksyuk@guu.ru)  
 
-17 февраля 2020
+9 февраля 2021
+
+---
+
+## План семестра   
+
+- 12 семинаров  
+- 6 лекций  
+- недели 13, 14 – проектная работа   
+
+Сквозное задание для проектной работы: &lt;/br&gt; **"Анализ активности пабликов в социальной сети"**   
+
+- команды по 4 (максимум 5) человек   
+- сбор данных в течение семестра   
+- итог - презентация с итогами анализа собранных данных   
 
 ---
 
@@ -57,22 +71,24 @@ background-size: cover
 
 ---
 
-Пример таблицы: [bit.ly/ex-gsh](https://docs.google.com/spreadsheets/d/1-M1_GGsgcCOBtfDpXtt_Qu6VkYssroSFEJkUkpSNS-s/edit#gid=0)   
+#### Практическая часть занятия  (1)   
 
-Если есть аккаунт на gmail.com, то:   
+- Объединиться в команды для сквозного задания
 
-1. Войти в аккаунт   
+- Выбрать паблики   
 
-1. Файл (File) -&gt; Создать копию (Make a Copy)   
+- Посмотреть [руководство по работе с Google Sheets для новичков](https://texterra.ru/blog/google-tablitsy-bolshoy-gayd-dlya-novichkov.html)  от TexTerra   
 
-1. Редактировать свою копию файла   
 
 ---
 
-#### Практическая часть занятия  
+#### Практическая часть занятия  (2)   
 
 .small[
-- Посмотреть [руководство по работе с Google Sheets для новичков](https://texterra.ru/blog/google-tablitsy-bolshoy-gayd-dlya-novichkov.html)  от TexTerra   
+
+- Вписать команду в таблицу БРС   
+
+- Начать сбор данных (с прошлой пятницы)  
 
 - Добавить *проверку данных* в столбцы "Группа (наименование паблика)", чтобы туда можно было вводить только названия выбранных групп    
 
@@ -84,7 +100,7 @@ background-size: cover
 
 - Добавить в столбцы таблицы 1 *условное форматирование*: залить серым фоном пустые ячейки       
 
-- Убрать полностью пустые строки из таблицы 1    
+- Убрать полностью пустые строки из таблицы 1   
 ]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
@@ -131,9 +147,25 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
-
-<script>
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
 (function() {
   var links = document.getElementsByTagName('a');
   for (var i = 0; i < links.length; i++) {
@@ -141,8 +173,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       links[i].target = '_blank';
     }
   }
-})();
-</script>
+})();</script>
 
 <script>
 slideshow._releaseMath = function(el) {

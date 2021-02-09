@@ -9,21 +9,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-### Дисциплина “Практикум на ЭВМ 4 (Введение в R)”    
+### Дисциплина “ИТвЭ”    
 
-* [Практика №1: Основы. 04.09.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_01_pmi.html)   
-
-* [Практика №2: Базовая графика. 23.09.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_02_pmi.html)   
-
-
-* [Практика №3: Пользовательские функции. 02.10.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_03_pmi.html)   
-
-
-* [07.10.2020: типичные ошибки в упражнениях 1-4.](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_excersises_01_pmi.html)   
-
-
-* [Практика №4: ЛР№1, Предварительный анализ данных для линейной регрессии. 21.10.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_04.html)   
-
-* [Практика №5: ЛР№2, Регрессионные модели. 17.11.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_05.html)   
-
-* [Практика №6: ЛР№3, Тесты остатков.  02.12.2020](https://aksyuk.github.io/xaringan_gh/slides/R_practice/slides_practice_06.html)   
+* [Практика №1](https://aksyuk.github.io/xaringan_gh/slides/itve/slides_01.html)     
