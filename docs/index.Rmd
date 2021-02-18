@@ -12,3 +12,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Дисциплина “ИТвЭ”    
 
 * [Практика №1](https://aksyuk.github.io/xaringan_gh/slides/itve/slides_01.html)     
+
+
+### Дисциплина “ТИиАД”    
+
+* [Практика №1](https://aksyuk.github.io/xaringan_gh/slides/itve/slides_01_tiad.html)     
