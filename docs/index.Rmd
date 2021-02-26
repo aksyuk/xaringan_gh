@@ -13,6 +13,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * [Практика №1](https://aksyuk.github.io/xaringan_gh/slides/itve/slides_01.html)     
 
+* [Установочные лекции 26.02.2021](https://aksyuk.github.io/xaringan_gh/slides/itve/ИТвЭ_слайды_25-02-2021_Суязова СА.pdf)
+
 
 ### Дисциплина “ТИиАД”    
 
