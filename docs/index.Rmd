@@ -18,6 +18,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * [Практика №4](https://aksyuk.github.io/xaringan_gh/slides/itve/ИТвЭ_слайды_ПЗ04.pdf)  
 
+* [Контрольная работа №1](https://aksyuk.github.io/xaringan_gh/slides/itve/КР01_слайды.pdf)  
+
 ### Дисциплина “ТИиАД”    
 
 * [Практика №1](https://aksyuk.github.io/xaringan_gh/slides/itve/slides_01_tiad.html)     
